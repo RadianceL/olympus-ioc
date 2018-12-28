@@ -1,4 +1,6 @@
-package com.example;
+package com.example.main;
+
+import com.example.config.ResourceParser;
 
 /**
  * @author eddie
@@ -7,8 +9,11 @@ package com.example;
  */
 public class Main {
 
+
+
     public static void main(String[] args) {
 
+        ResourceParser parser = new ResourceParser();
     }
 
 }
