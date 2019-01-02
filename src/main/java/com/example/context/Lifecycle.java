@@ -7,17 +7,17 @@ package com.example.context;
  */
 public interface Lifecycle {
     /**
-     * 开始
+     * 开始 - 发出一个信号，告知注解处理器可以开始工作了
      */
     void start();
 
     /**
-     * 结束
+     * 结束 - 容器&&启动 结束，告知注解处理器结束工作，销毁
      */
     void stop();
 
     /**
-     * 是否运行中
+     * 判断容器是否运行中
      * @return
      */
     boolean isRunning();

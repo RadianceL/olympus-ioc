@@ -7,8 +7,16 @@ package com.example.beans;
  */
 public interface BeanDefinition {
 
+    /**
+     * 获取Bean
+     * @return
+     */
     Object getBean();
 
+    /**
+     * 是否为单例模式
+     * @return
+     */
     boolean isSingleton();
 
 }

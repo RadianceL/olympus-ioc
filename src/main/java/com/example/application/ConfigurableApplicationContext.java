@@ -9,5 +9,9 @@ import com.example.beans.BeanFactory;
  */
 public interface ConfigurableApplicationContext {
 
+    /**
+     * 获取BeanFactory的实现类
+     * @return
+     */
     BeanFactory getBeanFactory();
 }
