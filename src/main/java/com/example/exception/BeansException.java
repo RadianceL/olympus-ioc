@@ -8,4 +8,13 @@ import com.example.exception.base.NestedRuntimeException;
  * @description
  */
 public class BeansException extends NestedRuntimeException {
+
+    public BeansException(String message) {
+        super(message);
+    }
+
+    public BeansException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }

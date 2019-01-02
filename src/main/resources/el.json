@@ -1,4 +1,28 @@
 {
-  "main": "test",
-  "1": "2"
+  "application": {
+    "basePackage": ""
+  },
+
+  "bean": [
+    {
+      "name": "",
+      "class": "",
+      "alias": "",
+      "singleton": true,
+      "constructor": [
+        {
+          "name": "name",
+          "ref": "beanName"
+        },
+        {
+          "name": "name",
+          "value": "string"
+        },
+        {
+          "name": "name",
+          "value": 1
+        }
+      ]
+    }
+  ]
 }

@@ -7,4 +7,12 @@ package com.example.exception.base;
  */
 public class NestedRuntimeException extends RuntimeException {
 
+    public NestedRuntimeException(String message) {
+        super(message);
+    }
+
+    public NestedRuntimeException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
