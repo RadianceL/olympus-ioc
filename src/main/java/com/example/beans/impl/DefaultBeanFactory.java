@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @createTime 2018-12-28
  * @description 默认Bean工厂实现
  */
-public class DefulatBeanFactory implements BeanFactory {
+public class DefaultBeanFactory implements BeanFactory {
 
     private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 

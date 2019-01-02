@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
  * @description bean对象容器
  */
 @AllArgsConstructor
-public class DefulatBeanBefinition implements BeanDefinition {
+public class DefaultBeanDefinition implements BeanDefinition {
 
     private Object bean;
 
