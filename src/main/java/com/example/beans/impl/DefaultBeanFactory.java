@@ -2,6 +2,7 @@ package com.example.beans.impl;
 
 import com.example.beans.BeanDefinition;
 import com.example.beans.BeanFactory;
+import com.example.beans.BeanRegister;
 import com.example.exception.BeansException;
 import com.example.exception.NoSuchBeanDefinitionException;
 import com.example.utils.Assert;
@@ -15,11 +16,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * @createTime 2018-12-28
  * @description 默认Bean工厂实现
  */
-public class DefaultBeanFactory implements BeanFactory {
+public class DefaultBeanFactory implements BeanFactory, BeanRegister {
 
     private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 
-    private final Map<String, String[]> aliasesDefinitionMap = new ConcurrentHashMap<>(256);
+    private final Map<String, String> aliasesDefinitionMap = new ConcurrentHashMap<>(256);
 
     private final Map<String, Class<?>> typeDefinitionMap = new ConcurrentHashMap<>(256);
 
@@ -80,10 +81,38 @@ public class DefaultBeanFactory implements BeanFactory {
     }
 
     @Override
-    public String[] getAliases(String name) {
+    public String getAliases(String name) {
         Assert.notNull(name, "'beanName' must not be null");
         return aliasesDefinitionMap.get(name);
     }
 
 
+    @Override
+    public void registerBeanDefinition(String name, DefaultBeanDefinition defaultBeanDefinition) {
+        Assert.notNull(name, "'beanName' must not be null");
+        commonPut(name, defaultBeanDefinition);
+    }
+
+    @Override
+    public void registerBeanDefinition(DefaultBeanDefinition defaultBeanDefinition) {
+        Assert.notNull(defaultBeanDefinition, "'beanName' must not be null");
+        final String name = defaultBeanDefinition.getBean().getClass().getName();
+        commonPut("", defaultBeanDefinition);
+    }
+
+    @Override
+    public void registerBeanDefinition(Class<?> clazz) {
+        DefaultBeanDefinition defaultBeanDefinition = new DefaultBeanDefinition(clazz);
+        final String name = defaultBeanDefinition.getBean().getClass().getName();
+        commonPut("", defaultBeanDefinition);
+    }
+
+    private void commonPut(String aliases, DefaultBeanDefinition defaultBeanDefinition) {
+        final String name = defaultBeanDefinition.getBean().getClass().getName();
+        beanDefinitionMap.put(name, defaultBeanDefinition);
+        final Class<?> aClass = defaultBeanDefinition.getBean().getClass();
+        typeDefinitionMap.put(name, aClass);
+        aliasesDefinitionMap.put(name, aliases);
+        resolvableDependencies.put(aClass, defaultBeanDefinition.getBean());
+    }
 }

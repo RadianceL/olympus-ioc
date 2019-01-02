@@ -14,6 +14,10 @@ public class Main {
     public static void main(String[] args) {
 
         ResourceParser parser = new ResourceParser();
+        final String s = parser.getClass().getName();
+        final String[] split = s.split(".");
+
+        System.out.println(split[0]);
     }
 
 }

@@ -72,6 +72,6 @@ public interface BeanFactory {
      * @param name
      * @return
      */
-    String[] getAliases(String name);
+    String getAliases(String name);
 
 }

@@ -30,42 +30,42 @@ public abstract class AbstractApplicationContext implements Lifecycle, Configura
 
     @Override
     public Object getBean(String name) throws BeansException {
-        return null;
+        return getBeanFactory().getBean(name);
     }
 
     @Override
     public <T> T getBean(Class<T> requiredType) throws BeansException {
-        return null;
+        return getBeanFactory().getBean(requiredType);
     }
 
     @Override
     public boolean containsBean(String name) {
-        return false;
+        return getBeanFactory().containsBean(name);
     }
 
     @Override
     public boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
-        return false;
+        return getBeanFactory().isSingleton(name);
     }
 
     @Override
     public boolean isPrototype(String name) throws NoSuchBeanDefinitionException {
-        return false;
+        return getBeanFactory().isPrototype(name);
     }
 
     @Override
     public boolean isTypeMatch(String name, Class<?> typeToMatch) throws NoSuchBeanDefinitionException {
-        return false;
+        return getBeanFactory().isTypeMatch(name, typeToMatch);
     }
 
     @Override
     public Class<?> getType(String name) throws NoSuchBeanDefinitionException {
-        return null;
+        return getBeanFactory().getType(name);
     }
 
     @Override
-    public String[] getAliases(String name) {
-        return new String[0];
+    public String getAliases(String name) {
+        return getBeanFactory().getAliases(name);
     }
 
     /**

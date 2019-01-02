@@ -3,6 +3,7 @@ package com.example.application.impl;
 import com.example.application.AbstractApplicationContext;
 import com.example.application.ApplicationContext;
 import com.example.beans.BeanFactory;
+import com.example.beans.impl.DefaultBeanFactory;
 
 /**
  * @author eddie
@@ -11,10 +12,13 @@ import com.example.beans.BeanFactory;
  */
 public class ClassPathJsonApplicationContext extends AbstractApplicationContext implements ApplicationContext{
 
+    private BeanFactory factory = new DefaultBeanFactory();
+
+
 
     @Override
     public BeanFactory getBeanFactory() {
-        return null;
+        return factory;
     }
 
 
