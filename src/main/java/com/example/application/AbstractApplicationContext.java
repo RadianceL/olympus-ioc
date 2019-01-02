@@ -13,22 +13,6 @@ import com.example.exception.NoSuchBeanDefinitionException;
 public abstract class AbstractApplicationContext implements Lifecycle, ConfigurableApplicationContext, BeanFactory {
 
     @Override
-    public void start() {
-
-    }
-
-    @Override
-    public void stop() {
-
-    }
-
-    @Override
-    public boolean isRunning() {
-        return true ;
-    }
-
-
-    @Override
     public Object getBean(String name) throws BeansException {
         return getBeanFactory().getBean(name);
     }

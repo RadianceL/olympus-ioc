@@ -4,6 +4,7 @@ import com.example.application.AbstractApplicationContext;
 import com.example.application.ApplicationContext;
 import com.example.beans.BeanFactory;
 import com.example.beans.impl.DefaultBeanFactory;
+import com.example.config.ResourceParser;
 
 /**
  * @author eddie
@@ -14,12 +15,28 @@ public class ClassPathJsonApplicationContext extends AbstractApplicationContext 
 
     private BeanFactory factory = new DefaultBeanFactory();
 
-
+    public ClassPathJsonApplicationContext (String configPath){
+        ResourceParser parser = new ResourceParser(configPath);
+        start();
+    }
 
     @Override
     public BeanFactory getBeanFactory() {
         return factory;
     }
 
+    @Override
+    public void start() {
 
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public boolean isRunning() {
+        return false;
+    }
 }

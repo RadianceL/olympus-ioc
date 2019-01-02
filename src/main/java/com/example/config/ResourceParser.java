@@ -13,8 +13,8 @@ public class ResourceParser {
 
     private static String EL_JSON = "";
 
-    static {
-        final InputStream is = ResourceParser.class.getClassLoader().getResourceAsStream("el.json");
+    public ResourceParser(String configPath){
+        final InputStream is = ResourceParser.class.getClassLoader().getResourceAsStream(configPath);
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[10];
         int length;
@@ -27,7 +27,6 @@ public class ResourceParser {
             e.printStackTrace();
         }
     }
-
 
 
 }

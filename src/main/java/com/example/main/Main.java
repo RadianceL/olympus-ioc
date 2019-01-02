@@ -1,6 +1,7 @@
 package com.example.main;
 
-import com.example.config.ResourceParser;
+import com.example.application.impl.ClassPathJsonApplicationContext;
+
 
 /**
  * @author eddie
@@ -9,15 +10,9 @@ import com.example.config.ResourceParser;
  */
 public class Main {
 
-
-
     public static void main(String[] args) {
+        final ClassPathJsonApplicationContext classPathJsonApplicationContext = new ClassPathJsonApplicationContext("el-default.json");
 
-        ResourceParser parser = new ResourceParser();
-        final String s = parser.getClass().getName();
-        final String[] split = s.split(".");
-
-        System.out.println(split[0]);
     }
 
 }
