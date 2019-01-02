@@ -19,16 +19,6 @@ public interface BeanFactory {
     Object getBean(String name) throws BeansException;
 
     /**
-     * 根据名字和类型获取Bean
-     * @param name
-     * @param requiredType
-     * @param <T>
-     * @return
-     * @throws BeansException
-     */
-    <T> T getBean(String name, Class<T> requiredType) throws BeansException;
-
-    /**
      * 根据类型获取Bean
      * @param requiredType
      * @param <T>
@@ -36,25 +26,6 @@ public interface BeanFactory {
      * @throws BeansException
      */
     <T> T getBean(Class<T> requiredType) throws BeansException;
-
-    /**
-     *
-     * @param name
-     * @param args
-     * @return
-     * @throws BeansException
-     */
-    Object getBean(String name, Object... args) throws BeansException;
-
-    /**
-     *
-     * @param requiredType
-     * @param args
-     * @param <T>
-     * @return
-     * @throws BeansException
-     */
-    <T> T getBean(Class<T> requiredType, Object... args) throws BeansException;
 
     /**
      * 是否包含一个Bean

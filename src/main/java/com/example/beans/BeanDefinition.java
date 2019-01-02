@@ -5,8 +5,10 @@ package com.example.beans;
  * @createTime 2018-12-28
  * @description 实例化好的Bean对象封装
  */
-public class BeanDefinition {
+public interface BeanDefinition {
 
+    Object getBean();
 
+    boolean isSingleton();
 
 }

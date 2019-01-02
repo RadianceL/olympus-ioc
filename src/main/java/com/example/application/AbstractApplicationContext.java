@@ -24,7 +24,7 @@ public abstract class AbstractApplicationContext implements Lifecycle, Configura
 
     @Override
     public boolean isRunning() {
-        return false;
+        return true ;
     }
 
 
@@ -34,22 +34,7 @@ public abstract class AbstractApplicationContext implements Lifecycle, Configura
     }
 
     @Override
-    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
-        return null;
-    }
-
-    @Override
     public <T> T getBean(Class<T> requiredType) throws BeansException {
-        return null;
-    }
-
-    @Override
-    public Object getBean(String name, Object... args) throws BeansException {
-        return null;
-    }
-
-    @Override
-    public <T> T getBean(Class<T> requiredType, Object... args) throws BeansException {
         return null;
     }
 
