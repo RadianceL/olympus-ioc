@@ -53,6 +53,7 @@ public class DefaultBeanDefinition implements BeanDefinition {
         if (aliasesName == null || aliasesName.equals("")){
             return bean.getClass().getName();
         }
+        System.out.println(aliasesName);
         return aliasesName;
     }
 

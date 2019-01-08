@@ -120,11 +120,11 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
             }
         }
 
-        beanDefinitionMap.put(name, defaultBeanDefinition);
-        final Class<?> aClass = defaultBeanDefinition.getBean().getClass();
-        typeDefinitionMap.put(name, aClass);
+        beanDefinitionMap.put(aliases, defaultBeanDefinition);
+        final Class<?> clz = defaultBeanDefinition.getBean().getClass();
+        typeDefinitionMap.put(name, clz);
         aliasesDefinitionMap.put(name, aliases);
-        resolvableDependencies.put(aClass, defaultBeanDefinition.getBean());
+        resolvableDependencies.put(clz, defaultBeanDefinition.getBean());
     }
 
     public static DefaultBeanFactory getInstance() {

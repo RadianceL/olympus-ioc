@@ -19,7 +19,7 @@ public class Main {
         Active active = new DefaultBeanProcessor();
         BeanRegister register= DefaultBeanFactory.getInstance();
         active.activate(TestBean1.class.getPackage(), register);
-        final TestBean1 bean = context.getBean(TestBean1.class);
+        final TestBean1 bean = (TestBean1) context.getBean("testBean1");
         System.out.println(bean.hashCode());
         System.out.println(bean.hashCode());
     }

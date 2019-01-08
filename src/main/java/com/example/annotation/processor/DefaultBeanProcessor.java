@@ -47,7 +47,7 @@ public class DefaultBeanProcessor implements Active {
             if (Objects.isNull(defaultBeanDefinition)){
                 continue;
             }
-            register.registerBeanDefinition("", defaultBeanDefinition);
+            register.registerBeanDefinition(defaultBeanDefinition.getAliasesName(), defaultBeanDefinition);
         }
     }
 }
