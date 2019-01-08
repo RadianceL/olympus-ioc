@@ -8,6 +8,7 @@ import com.example.beans.impl.DefaultBeanDefinition;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author eddie
@@ -22,15 +23,18 @@ public class DefaultBeanProcessor implements Active {
      * @return
      * @throws NoSuchMethodException
      */
-    private static DefaultBeanDefinition testAnnotation(Class clazz) {
+    private static DefaultBeanDefinition classForAnnotation0(Class clazz) {
         Annotation[] classAnnotation = clazz.getAnnotations();
         for(Annotation annotation : classAnnotation){
             Class annotationType =  annotation.annotationType();
             if (annotationType.equals(Bean.class)){
-                System.out.println("Class " + clazz.getName() + " has Bean annotation && value: " + ((Bean)annotation).value());
+                final String value = ((Bean) annotation).value();
+                System.out.println("Class " + clazz.getName() + " has Bean annotation && value: " + value);
+                if (!value.equals("")){
+                    return new DefaultBeanDefinition(value, clazz);
+                }
                 return DefaultBeanDefinition.initBeanDefinition(clazz);
             }
-            System.out.println("class annotation is:" + annotationType);
         }
         return null;
     }
@@ -39,7 +43,11 @@ public class DefaultBeanProcessor implements Active {
     public void activate(Package pkg, BeanRegister register) {
         final List<Class<?>> allClassByPackageName = AnnotationUtils.getAllClassByPackageName(pkg);
         for (Class<?> clazz: allClassByPackageName){
-            register.registerBeanDefinition(clazz.getName(), testAnnotation(clazz));
+            final DefaultBeanDefinition defaultBeanDefinition = classForAnnotation0(clazz);
+            if (Objects.isNull(defaultBeanDefinition)){
+                continue;
+            }
+            register.registerBeanDefinition("", defaultBeanDefinition);
         }
     }
 }

@@ -14,6 +14,12 @@ public interface BeanDefinition {
     Object getBean();
 
     /**
+     * 获取别名
+     * @return
+     */
+    String getAliasesName();
+
+    /**
      * 是否为单例模式
      * @return
      */

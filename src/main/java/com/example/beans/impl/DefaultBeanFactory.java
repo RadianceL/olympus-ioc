@@ -100,19 +100,19 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
     @Override
     public void registerBeanDefinition(DefaultBeanDefinition defaultBeanDefinition) {
         Assert.notNull(defaultBeanDefinition, "'beanName' must not be null");
-        commonPut("", defaultBeanDefinition);
+        commonPut(defaultBeanDefinition.getAliasesName(), defaultBeanDefinition);
     }
 
     @Override
     public void registerBeanDefinition(Class<?> clazz) {
-        DefaultBeanDefinition defaultBeanDefinition = new DefaultBeanDefinition(clazz);
-        commonPut("", defaultBeanDefinition);
+        DefaultBeanDefinition defaultBeanDefinition = DefaultBeanDefinition.initBeanDefinition(clazz);
+        commonPut(defaultBeanDefinition.getAliasesName(), defaultBeanDefinition);
     }
 
     private void commonPut(String aliases, DefaultBeanDefinition defaultBeanDefinition) {
         final String name = defaultBeanDefinition.getBean().getClass().getName();
 
-        Object oldBean = null;
+        Object oldBean;
         if (containsBean(name)){
             oldBean = beanDefinitionMap.get(name);
             if (oldBean == defaultBeanDefinition){

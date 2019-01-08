@@ -16,7 +16,23 @@ import java.lang.reflect.InvocationTargetException;
 @AllArgsConstructor
 public class DefaultBeanDefinition implements BeanDefinition {
 
+    private String aliasesName;
+
     private Object bean;
+
+    private DefaultBeanDefinition(Object bean){
+        this.bean = bean;
+    }
+
+    public DefaultBeanDefinition(String aliasesName, Class clz){
+        this.aliasesName = aliasesName;
+        try {
+            final Object o = clz.getDeclaredConstructor().newInstance();
+            this.bean = o;
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static DefaultBeanDefinition initBeanDefinition(Class<?> clazz){
         try {
@@ -30,6 +46,14 @@ public class DefaultBeanDefinition implements BeanDefinition {
     @Override
     public Object getBean() {
         return this.bean;
+    }
+
+    @Override
+    public String getAliasesName() {
+        if (aliasesName == null || aliasesName.equals("")){
+            return bean.getClass().getName();
+        }
+        return aliasesName;
     }
 
     @Override
