@@ -14,6 +14,6 @@ public interface Active {
      * @param pkg
      * @param register
      */
-    void activate(Package pkg, BeanRegister register);
+    void activate(String pkg, BeanRegister register);
 
 }

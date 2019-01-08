@@ -1,5 +1,8 @@
 package com.example.config;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +14,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class ResourceParser {
 
-    private static String EL_JSON = "";
+    private static JSONObject EL_JSON;
 
     public ResourceParser(String configPath){
         final InputStream is = ResourceParser.class.getClassLoader().getResourceAsStream(configPath);
@@ -22,11 +25,18 @@ public class ResourceParser {
             while ((length = is.read(buffer)) != -1) {
                 result.write(buffer, 0, length);
             }
-            EL_JSON = result.toString(StandardCharsets.UTF_8);
+            final String str = result.toString(StandardCharsets.UTF_8);
+            EL_JSON = JSONObject.parseObject(str);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
+    public String getBaseBeanPackage(){
+        final String baseBeanPkg = EL_JSON.getString("base_bean_pkg");
+        if (baseBeanPkg == null || baseBeanPkg.equals("")){
+            throw new RuntimeException("");
+        }
+        return baseBeanPkg;
+    }
 }

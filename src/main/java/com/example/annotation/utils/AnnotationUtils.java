@@ -26,10 +26,8 @@ public class AnnotationUtils {
      * @param pkg
      * @return
      */
-    public static List<Class<?>> getAllClassByPackageName(Package pkg) {
-        String packageName = pkg.getName();
-        // 获取当前包下以及子包下所以的类
-        List<Class<?>> returnClassList = getClasses(packageName);
+    public static List<Class<?>> getAllClassByPackageName(String pkg) {
+        List<Class<?>> returnClassList = getClasses(pkg);
         return returnClassList;
     }
 

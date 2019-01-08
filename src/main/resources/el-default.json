@@ -1,4 +1,5 @@
 {
+  "base_bean_pkg": "com.example.main.bean",
   "bean": [
     {
       "name": "",

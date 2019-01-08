@@ -1,10 +1,6 @@
 package com.example.main;
 
-import com.example.annotation.Active;
-import com.example.annotation.processor.DefaultBeanProcessor;
 import com.example.application.impl.ClassPathJsonApplicationContext;
-import com.example.beans.BeanRegister;
-import com.example.beans.impl.DefaultBeanFactory;
 import com.example.main.bean.TestBean1;
 
 /**
@@ -16,12 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         ClassPathJsonApplicationContext context = new ClassPathJsonApplicationContext("el-default.json");
-        Active active = new DefaultBeanProcessor();
-        BeanRegister register= DefaultBeanFactory.getInstance();
-        active.activate(TestBean1.class.getPackage(), register);
         final TestBean1 bean = (TestBean1) context.getBean("testBean1");
+        final TestBean1 bean1 = context.getBean(TestBean1.class);
         System.out.println(bean.hashCode());
-        System.out.println(bean.hashCode());
+        System.out.println(bean1.hashCode());
     }
 
 }

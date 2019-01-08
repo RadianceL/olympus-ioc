@@ -40,7 +40,7 @@ public class DefaultBeanProcessor implements Active {
     }
 
     @Override
-    public void activate(Package pkg, BeanRegister register) {
+    public void activate(String pkg, BeanRegister register) {
         final List<Class<?>> allClassByPackageName = AnnotationUtils.getAllClassByPackageName(pkg);
         for (Class<?> clazz: allClassByPackageName){
             final DefaultBeanDefinition defaultBeanDefinition = classForAnnotation0(clazz);
