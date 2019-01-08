@@ -1,6 +1,5 @@
 package com.example.config;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -12,12 +11,12 @@ import java.nio.charset.StandardCharsets;
  * @createTime 2018-12-27
  * @description 配置文件解析器 -- JSON
  */
-public class ResourceParser {
+public class ConfigLoader {
 
     private static JSONObject EL_JSON;
 
-    public ResourceParser(String configPath){
-        final InputStream is = ResourceParser.class.getClassLoader().getResourceAsStream(configPath);
+    public ConfigLoader(String configPath){
+        final InputStream is = ConfigLoader.class.getClassLoader().getResourceAsStream(configPath);
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[10];
         int length;
