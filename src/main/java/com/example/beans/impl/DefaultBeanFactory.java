@@ -18,6 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DefaultBeanFactory implements BeanFactory, BeanRegister {
 
+    private static volatile DefaultBeanFactory beanFactory;
+
     private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 
     private final Map<String, String> aliasesDefinitionMap = new ConcurrentHashMap<>(256);
@@ -25,6 +27,8 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
     private final Map<String, Class<?>> typeDefinitionMap = new ConcurrentHashMap<>(256);
 
     private final Map<Class<?>, Object> resolvableDependencies = new ConcurrentHashMap<>(256);
+
+    private DefaultBeanFactory(){}
 
     @Override
     public Object getBean(String name) throws BeansException {
@@ -121,5 +125,16 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
         typeDefinitionMap.put(name, aClass);
         aliasesDefinitionMap.put(name, aliases);
         resolvableDependencies.put(aClass, defaultBeanDefinition.getBean());
+    }
+
+    public static DefaultBeanFactory getInstance() {
+        if (beanFactory == null) {
+            synchronized (DefaultBeanFactory.class) {
+                if (beanFactory == null) {
+                    beanFactory = new DefaultBeanFactory();
+                }
+            }
+        }
+        return beanFactory;
     }
 }
