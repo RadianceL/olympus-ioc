@@ -7,6 +7,6 @@ import com.example.annotation.Bean;
  * @createTime 2019-01-08
  * @description 测试Bean注解
  */
-@Bean
+@Bean(value = "testBean2")
 public class TestBean2 {
 }
