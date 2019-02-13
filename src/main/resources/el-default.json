@@ -2,12 +2,12 @@
   "base_bean_pkg": "com.example.main.bean",
   "bean": [
     {
-      "name": "",
-      "class": "",
-      "alias": "",
-      "singleton": "",
+      "name": "TestBean1",
+      "class": "com.example.main.bean.TestBean1",
+      "alias": "testBean1",
+      "singleton": true,
       "constructor": [
-        ""
+
       ]
     }
   ]
