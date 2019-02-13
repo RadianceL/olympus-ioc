@@ -24,7 +24,7 @@ public class ConfigLoader {
             while ((length = is.read(buffer)) != -1) {
                 result.write(buffer, 0, length);
             }
-            final String str = result.toString(StandardCharsets.UTF_8);
+            final String str = result.toString("UTF-8");
             EL_JSON = JSONObject.parseObject(str);
         } catch (Exception e) {
             e.printStackTrace();
