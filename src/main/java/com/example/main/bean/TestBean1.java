@@ -14,7 +14,7 @@ public class TestBean1 {
     @AutoWried
     private TestBean2 testBean2;
 
-    public void getHashCode(){
-        System.out.println(testBean2.hashCode());
+    public int getHashCode(){
+        return testBean2.hashCode();
     }
 }

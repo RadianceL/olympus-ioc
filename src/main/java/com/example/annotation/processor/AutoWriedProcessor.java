@@ -4,7 +4,6 @@ import com.example.annotation.AutoWried;
 import com.example.annotation.AutoWriedService;
 import com.example.annotation.utils.AnnotationUtils;
 import com.example.beans.BeanFactory;
-import com.example.main.bean.TestBean1;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -20,7 +19,7 @@ public class AutoWriedProcessor implements AutoWriedService {
     private BeanFactory factory;
 
     /**
-     * 获取类上的注解 如果有Bean注解 则处理
+     * 获取列上的注解 如果有AutoWried注解 则处理
      * @param clazz
      * @return
      * @throws NoSuchMethodException
