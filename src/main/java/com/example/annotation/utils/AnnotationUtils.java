@@ -22,17 +22,21 @@ public class AnnotationUtils {
 
     /**
      * 通过包名获取包内所有类
-     *
      * @param pkg
      * @return
      */
     public static List<Class<?>> getAllClassByPackageName(String pkg) {
         List<Class<?>> returnClassList = getClasses(pkg);
+        if (returnClassList.size() == 0){
+            throw new RuntimeException("类名错误/没有有效的对象");
+        }
         return returnClassList;
     }
 
     /**
      * 通过接口名取得某个接口下所有实现这个接口的类
+     * @param c
+     * @return
      */
     public static List<Class<?>> getAllClassByInterface(Class<?> c) {
         List<Class<?>> returnClassList = null;
@@ -43,7 +47,7 @@ public class AnnotationUtils {
             // 获取当前包下以及子包下所以的类
             List<Class<?>> allClass = getClasses(packageName);
             if (allClass != null) {
-                returnClassList = new ArrayList<Class<?>>();
+                returnClassList = new ArrayList<>();
                 for (Class<?> cls : allClass) {
                     // 判断是否是同一个接口
                     if (c.isAssignableFrom(cls)) {
@@ -61,6 +65,9 @@ public class AnnotationUtils {
 
     /**
      * 取得某一类所在包的所有类名 不含迭代
+     * @param classLocation
+     * @param packageName
+     * @return
      */
     public static String[] getPackageAllClassName(String classLocation, String packageName) {
         // 将packageName分解
@@ -70,9 +77,9 @@ public class AnnotationUtils {
         for (int i = 0; i < packageLength; i++) {
             realClassLocation = realClassLocation + File.separator + packagePathSplit[i];
         }
-        File packeageDir = new File(realClassLocation);
-        if (packeageDir.isDirectory()) {
-            String[] allClassName = packeageDir.list();
+        File packageDir = new File(realClassLocation);
+        if (packageDir.isDirectory()) {
+            String[] allClassName = packageDir.list();
             return allClassName;
         }
         return null;
@@ -80,7 +87,6 @@ public class AnnotationUtils {
 
     /**
      * 从包package中获取所有的Class
-     *
      * @param packageName
      * @return
      */
@@ -164,7 +170,6 @@ public class AnnotationUtils {
 
     /**
      * 以文件的形式来获取包下的所有Class
-     *
      * @param packageName
      * @param packagePath
      * @param recursive
@@ -178,15 +183,10 @@ public class AnnotationUtils {
             return;
         }
         // 如果存在 就获取包下的所有文件 包括目录
-        File[] dirfiles = dir.listFiles(new FileFilter() {
-            // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
-            @Override
-            public boolean accept(File file) {
-                return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
-            }
-        });
+        // 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
+        File[] dirFiles = dir.listFiles(file -> (recursive && file.isDirectory()) || (file.getName().endsWith(".class")));
         // 循环所有文件
-        for (File file : dirfiles) {
+        for (File file : dirFiles) {
             // 如果是目录 则继续扫描
             if (file.isDirectory()) {
                 findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive, classes);

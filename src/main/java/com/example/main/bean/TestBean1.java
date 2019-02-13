@@ -1,5 +1,6 @@
 package com.example.main.bean;
 
+import com.example.annotation.AutoWried;
 import com.example.annotation.Bean;
 
 /**
@@ -10,6 +11,10 @@ import com.example.annotation.Bean;
 @Bean(value = "testBean1")
 public class TestBean1 {
 
+    @AutoWried
+    private TestBean2 testBean2;
 
-
+    public void getHashCode(){
+        System.out.println(testBean2.hashCode());
+    }
 }

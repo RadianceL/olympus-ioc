@@ -1,6 +1,8 @@
 package com.example.application.impl;
 
 import com.example.annotation.Active;
+import com.example.annotation.AutoWriedService;
+import com.example.annotation.processor.AutoWriedProcessor;
 import com.example.annotation.processor.DefaultBeanProcessor;
 import com.example.application.AbstractApplicationContext;
 import com.example.application.ApplicationContext;
@@ -20,10 +22,13 @@ public class ClassPathJsonApplicationContext extends AbstractApplicationContext 
 
     private static final Active active;
 
+    private static final AutoWriedService autoWriedService;
+
     private ConfigLoader loader;
 
     static {
         active = new DefaultBeanProcessor();
+        autoWriedService = new AutoWriedProcessor();
     }
 
     public ClassPathJsonApplicationContext (String configPath){
@@ -43,11 +48,12 @@ public class ClassPathJsonApplicationContext extends AbstractApplicationContext 
         BeanRegister register= DefaultBeanFactory.getInstance();
         log.info("start load bean to IOC map - 开始注册bean对象到IOC容器");
         active.activate(loader.getBaseBeanPackage(), register);
+        autoWriedService.start(loader.getBaseBeanPackage(), getBeanFactory());
     }
 
     @Override
     public void stop() {
-
+        return;
     }
 
     @Override

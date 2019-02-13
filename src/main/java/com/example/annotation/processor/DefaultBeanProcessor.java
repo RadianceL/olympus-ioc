@@ -28,7 +28,7 @@ public class DefaultBeanProcessor implements Active {
      * @return
      * @throws NoSuchMethodException
      */
-    private static DefaultBeanDefinition classForAnnotation0(Class clazz) {
+    private DefaultBeanDefinition classForAnnotation0(Class clazz) {
         Annotation[] classAnnotation = clazz.getAnnotations();
         for(Annotation annotation : classAnnotation){
             Class annotationType =  annotation.annotationType();
