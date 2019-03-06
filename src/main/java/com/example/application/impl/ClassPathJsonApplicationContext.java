@@ -53,7 +53,6 @@ public class ClassPathJsonApplicationContext extends AbstractApplicationContext 
 
     @Override
     public void stop() {
-        return;
     }
 
     @Override

@@ -1,13 +1,18 @@
 package com.example.annotation.processor;
 
 import com.example.annotation.Active;
+import com.example.annotation.AutoWried;
 import com.example.annotation.Bean;
 import com.example.annotation.utils.AnnotationUtils;
 import com.example.beans.BeanRegister;
 import com.example.beans.impl.DefaultBeanDefinition;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedType;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,7 +40,7 @@ public class DefaultBeanProcessor implements Active {
             if (annotationType.equals(Bean.class)){
                 final int size = count.incrementAndGet();
                 final String value = ((Bean) annotation).value();
-                log.info("记载第 {} 个Bean对象, 别名为 {}", size, value);
+                log.info("注册第 {} 个Bean对象, 别名为 {}", size, value);
                 if (!value.equals("")){
                     return new DefaultBeanDefinition(value, clazz);
                 }
