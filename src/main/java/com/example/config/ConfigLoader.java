@@ -1,10 +1,11 @@
 package com.example.config;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * @author eddie
@@ -21,8 +22,10 @@ public class ConfigLoader {
         byte[] buffer = new byte[10];
         int length;
         try {
-            while ((length = is.read(buffer)) != -1) {
-                result.write(buffer, 0, length);
+            if (!Objects.isNull(is)) {
+                while ((length = is.read(buffer)) != -1) {
+                    result.write(buffer, 0, length);
+                }
             }
             final String str = result.toString("UTF-8");
             EL_JSON = JSONObject.parseObject(str);
@@ -33,7 +36,7 @@ public class ConfigLoader {
 
     public String getBaseBeanPackage(){
         final String baseBeanPkg = EL_JSON.getString("base_bean_pkg");
-        if (baseBeanPkg == null || baseBeanPkg.equals("")){
+        if (StringUtils.isBlank(baseBeanPkg)){
             throw new RuntimeException("");
         }
         return baseBeanPkg;
