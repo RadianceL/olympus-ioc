@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @description 主程序入口
  */
 @Slf4j
-public class Main {
+public class Bootstrap {
 
     public static void main(String[] args) {
         ClassPathJsonApplicationContext context = new ClassPathJsonApplicationContext("el-default.json");

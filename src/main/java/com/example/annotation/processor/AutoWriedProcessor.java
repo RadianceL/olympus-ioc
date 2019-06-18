@@ -42,7 +42,6 @@ public class AutoWriedProcessor implements AutoWriedService {
               }
           }
         }
-        return;
     }
 
 
