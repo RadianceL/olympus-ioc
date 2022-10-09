@@ -1,5 +1,5 @@
 {
-  "base_bean_pkg": "com.example.main.bean",
+  "base_bean_pkg": "com.olympus.main.bean",
   "bean": [
     {
       "name": "TestBean1",
