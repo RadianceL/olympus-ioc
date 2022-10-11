@@ -1,5 +1,6 @@
 package com.olympus.main.bean;
 
+import com.olympus.annotation.AutoWried;
 import com.olympus.annotation.Bean;
 
 /**
@@ -9,4 +10,10 @@ import com.olympus.annotation.Bean;
  */
 @Bean(value = "testBean2")
 public class TestBean2 {
+
+    private TestBean1 testBean1;
+
+    public TestBean2(TestBean1 testBean1) {
+        this.testBean1 = testBean1;
+    }
 }

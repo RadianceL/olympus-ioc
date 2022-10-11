@@ -1,6 +1,6 @@
 package com.olympus.application;
 
-import com.olympus.context.Lifecycle;
+import com.olympus.application.context.Lifecycle;
 
 /**
  * @author eddie

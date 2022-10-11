@@ -1,7 +1,7 @@
 package com.olympus.annotation.processor;
 
 import com.olympus.annotation.AutoWried;
-import com.olympus.annotation.AutoWriedService;
+import com.olympus.application.AutoWriedService;
 import com.olympus.annotation.utils.AnnotationUtils;
 import com.olympus.beans.BeanFactory;
 

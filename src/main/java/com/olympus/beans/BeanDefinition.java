@@ -9,20 +9,23 @@ public interface BeanDefinition {
 
     /**
      * 获取Bean
-     * @return
      */
     Object getBean();
-
     /**
      * 获取别名
-     * @return
      */
     String getAliasesName();
-
     /**
      * 是否为单例模式
-     * @return
      */
     boolean isSingleton();
+    /**
+     * 是否延时加载
+     */
+    boolean isDelay();
+    /**
+     * 是否就绪
+     */
+    boolean isReady();
 
 }

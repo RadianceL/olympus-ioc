@@ -12,17 +12,16 @@ public interface BeanFactory {
 
     /**
      * 获取一个Bean
-     * @param name
-     * @return
+     * @param name          需要的bean名称
+     * @return              返回对应的实例
      * @throws BeansException
      */
     Object getBean(String name) throws BeansException;
 
     /**
      * 根据类型获取Bean
-     * @param requiredType
-     * @param <T>
-     * @return
+     * @param requiredType      需要的类型
+     * @param <T>               返回对应的实例
      * @throws BeansException
      */
     <T> T getBean(Class<T> requiredType) throws BeansException;
@@ -30,9 +29,14 @@ public interface BeanFactory {
     /**
      * 是否包含一个Bean
      * @param name
-     * @return
      */
     boolean containsBean(String name);
+
+    /**
+     * 是否包含一个Bean
+     * @param requireType
+     */
+    boolean containsBean(Class<?> requireType);
 
     /**
      * 该Bean是否未单例模式

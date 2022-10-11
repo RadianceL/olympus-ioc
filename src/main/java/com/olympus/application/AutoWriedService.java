@@ -1,4 +1,4 @@
-package com.olympus.annotation;
+package com.olympus.application;
 
 import com.olympus.beans.BeanFactory;
 
@@ -11,8 +11,8 @@ public interface AutoWriedService {
 
     /**
      * 激活函数
-     * @param pkg
-     * @param factory
+     * @param pkg           base包路径
+     * @param factory       对象工厂
      */
     void start(String pkg, BeanFactory factory);
 

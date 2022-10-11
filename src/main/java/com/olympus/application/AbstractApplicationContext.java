@@ -1,7 +1,7 @@
 package com.olympus.application;
 
 import com.olympus.beans.BeanFactory;
-import com.olympus.context.Lifecycle;
+import com.olympus.application.context.Lifecycle;
 import com.olympus.exception.BeansException;
 import com.olympus.exception.NoSuchBeanDefinitionException;
 
@@ -25,6 +25,11 @@ public abstract class AbstractApplicationContext implements Lifecycle, Configura
     @Override
     public boolean containsBean(String name) {
         return getBeanFactory().containsBean(name);
+    }
+
+    @Override
+    public boolean containsBean(Class<?> requireType) {
+        return getBeanFactory().containsBean(requireType);
     }
 
     @Override

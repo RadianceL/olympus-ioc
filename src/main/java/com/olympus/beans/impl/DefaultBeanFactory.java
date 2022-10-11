@@ -54,6 +54,12 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
     }
 
     @Override
+    public boolean containsBean(Class<?> requireType) {
+        Assert.notNull(requireType, "'beanName' must not be null");
+        return resolvableDependencies.containsKey(requireType);
+    }
+
+    @Override
     public boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
         Assert.notNull(name, "'beanName' must not be null");
         final BeanDefinition beanDefinition = beanDefinitionMap.get(name);
@@ -101,12 +107,12 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
 
     @Override
     public void registerBeanDefinition(Class<?> clazz) {
-        DefaultBeanDefinition defaultBeanDefinition = DefaultBeanDefinition.initBeanDefinition(clazz);
+        DefaultBeanDefinition defaultBeanDefinition = DefaultBeanDefinition.initBeanDefinition(clazz, false);
         commonPut(defaultBeanDefinition.getAliasesName(), defaultBeanDefinition);
     }
 
     private void commonPut(String aliases, DefaultBeanDefinition defaultBeanDefinition) {
-        final String name = defaultBeanDefinition.getBean().getClass().getName();
+        final String name = defaultBeanDefinition.getBean().getClass().getTypeName();
 
         Object oldBean;
         if (containsBean(name)){

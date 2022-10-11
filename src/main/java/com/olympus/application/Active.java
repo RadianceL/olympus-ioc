@@ -1,4 +1,4 @@
-package com.olympus.annotation;
+package com.olympus.application;
 
 import com.olympus.beans.BeanRegister;
 
