@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Bean {
+public @interface Component {
     /**
      * 别名
      */

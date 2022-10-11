@@ -1,6 +1,6 @@
 package com.olympus.application;
 
-import com.olympus.application.context.Lifecycle;
+import com.olympus.looper.lifecycle.Lifecycle;
 
 /**
  * @author eddie

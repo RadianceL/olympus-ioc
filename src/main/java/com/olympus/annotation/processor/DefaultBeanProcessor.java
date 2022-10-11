@@ -1,10 +1,12 @@
 package com.olympus.annotation.processor;
 
 import com.olympus.application.Active;
-import com.olympus.annotation.Bean;
+import com.olympus.annotation.Component;
 import com.olympus.annotation.utils.AnnotationUtils;
 import com.olympus.beans.BeanRegister;
 import com.olympus.beans.impl.DefaultBeanDefinition;
+import com.olympus.looper.ApplicationEventChannelContext;
+import com.olympus.looper.lifecycle.LifecycleEnums;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
@@ -19,12 +21,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 public class DefaultBeanProcessor implements Active {
-
-    /**
-     * 拥有的bean定义数量
-     */
-    private static final AtomicInteger count = new AtomicInteger(0);
-
     /**
      * 获取类上的注解 如果有Bean注解 则处理
      * @param clazz         对象类型
@@ -34,11 +30,9 @@ public class DefaultBeanProcessor implements Active {
         Annotation[] classAnnotation = clazz.getAnnotations();
         for(Annotation annotation : classAnnotation){
             Class<?> annotationType =  annotation.annotationType();
-            if (annotationType.equals(Bean.class)){
-                final int size = count.incrementAndGet();
-                final String aliasesName = ((Bean) annotation).value();
-                log.info("注册第 {} 个Bean对象, 别名为 {}", size, aliasesName);
-                return DefaultBeanDefinition.initBeanDefinition(aliasesName, clazz, ((Bean) annotation).delay());
+            if (annotationType.equals(Component.class)){
+                final String aliasesName = ((Component) annotation).value();
+                return DefaultBeanDefinition.initBeanDefinition(aliasesName, clazz, ((Component) annotation).delay());
             }
         }
         return null;
@@ -46,6 +40,7 @@ public class DefaultBeanProcessor implements Active {
 
     @Override
     public void activate(String pkg, BeanRegister register) {
+        ApplicationEventChannelContext.getInstance().applicationLifecycleChange(LifecycleEnums.START_INITIALIZATION_BEAN);
         final List<Class<?>> allClassByPackageName = AnnotationUtils.getAllClassByPackageName(pkg);
         for (Class<?> clazz: allClassByPackageName){
             final DefaultBeanDefinition defaultBeanDefinition = classForAnnotation0(clazz);
@@ -54,6 +49,5 @@ public class DefaultBeanProcessor implements Active {
             }
             register.registerBeanDefinition(defaultBeanDefinition.getAliasesName(), defaultBeanDefinition);
         }
-        log.info("Bean 加载完成 容器一级初始化序列结束");
     }
 }

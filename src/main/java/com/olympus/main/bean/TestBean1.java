@@ -1,14 +1,14 @@
 package com.olympus.main.bean;
 
 import com.olympus.annotation.AutoWried;
-import com.olympus.annotation.Bean;
+import com.olympus.annotation.Component;
 
 /**
  * @author eddie
  * @createTime 2019-01-08
  * @description 测试Bean注解
  */
-@Bean(value = "testBean1")
+@Component(value = "testBean1")
 public class TestBean1 {
 
     @AutoWried

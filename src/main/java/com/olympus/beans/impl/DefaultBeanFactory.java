@@ -112,7 +112,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
     }
 
     private void commonPut(String aliases, DefaultBeanDefinition defaultBeanDefinition) {
-        final String name = defaultBeanDefinition.getBean().getClass().getTypeName();
+        final String name = defaultBeanDefinition.getTargetClass().getTypeName();
 
         Object oldBean;
         if (containsBean(name)){
@@ -123,7 +123,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanRegister {
         }
 
         beanDefinitionMap.put(aliases, defaultBeanDefinition);
-        final Class<?> clz = defaultBeanDefinition.getBean().getClass();
+        final Class<?> clz = defaultBeanDefinition.getTargetClass();
         typeDefinitionMap.put(name, clz);
         aliasesDefinitionMap.put(name, aliases);
         resolvableDependencies.put(clz, defaultBeanDefinition.getBean());

@@ -1,7 +1,7 @@
 package com.olympus.application;
 
 import com.olympus.beans.BeanFactory;
-import com.olympus.application.context.Lifecycle;
+import com.olympus.looper.lifecycle.Lifecycle;
 import com.olympus.exception.BeansException;
 import com.olympus.exception.NoSuchBeanDefinitionException;
 

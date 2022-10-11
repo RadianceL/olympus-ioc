@@ -108,6 +108,14 @@ public class DefaultBeanDefinition implements BeanDefinition {
         return new DefaultBeanDefinition(aliasesName, cls, delay);
     }
 
+    public Class<?> getTargetClass() {
+        return targetClass;
+    }
+
+    public void setTargetClass(Class<?> targetClass) {
+        this.targetClass = targetClass;
+    }
+
     @Override
     public Object getBean() {
         if (isReady()) {
